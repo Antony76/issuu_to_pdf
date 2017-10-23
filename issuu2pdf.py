@@ -15,21 +15,24 @@
 ### Requiered libraries:
 # img2pdf : https://pypi.python.org/pypi/img2pdf
 ###
+import os
+import sys
 import urllib.request
 import img2pdf
-import sys
 
 imageFiles=[]
 # Name of the output PDF file
 outputName="issuu.pdf"
 i=1
-errorMet=False
+DLerrorMet=False
+ULerrorMet=False
 
-print("issuu2pdf v0.1")
+print("issuu2pdf v0.2")
 print("Download %s from https://issuu.com" % outputName)
 sys.stdout.flush()
 
-while not errorMet:
+# DL all images
+while not DLerrorMet:
     try:
         imageFile="page_%i.jpg" % i
         # URL example to be replaced by yours
@@ -38,10 +41,21 @@ while not errorMet:
         urllib.request.urlretrieve(url, imageFile)
         imageFiles.append(imageFile)
         print("Retrieved %s from URL %s" % (imageFile, url))
-        i+=1
         sys.stdout.flush()
+        i+=1
     except:
-        errorMet=True
+        DLerrorMet=True
 
+# Append all images to pdf file
 with open(outputName, "wb") as fh:
     fh.write(img2pdf.convert(imageFiles))
+
+# Clean-up temp jpg images
+i=1
+while not ULerrorMet:
+    try:
+        imageFile="page_%i.jpg" % i
+        os.unlink(imageFile)
+        i+=1
+    except:
+        ULerrorMet=True
