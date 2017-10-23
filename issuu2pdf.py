@@ -44,6 +44,7 @@ while not DLerrorMet:
         sys.stdout.flush()
         i+=1
     except:
+        print("DL completed")
         DLerrorMet=True
 
 # Append all images to pdf file
@@ -58,4 +59,6 @@ while not ULerrorMet:
         os.unlink(imageFile)
         i+=1
     except:
+        print("Clean-up completed")
         ULerrorMet=True
+print("End")
