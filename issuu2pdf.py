@@ -1,5 +1,5 @@
 ### issuu2pdf.py
-# The aim of this script is to create a PDF
+# The aim of this python3 script is to create a PDF
 # from ISSUU contents: https://issuu.com
 #
 ### How does it works
@@ -11,9 +11,11 @@
 # wait ...
 # enjoy your new pdf file
 #
-### Requiered libraries:
-# img2pdf : https://pypi.python.org/pypi/img2pdf
+### Python 3.x (NOT 2.x because of urllib compatibility)
+### Requiered librarie img2pdf : https://pypi.python.org/pypi/img2pdf
 ###
+### Script tested on Windows7/DOS and Linux/Ubuntu 16.04
+
 import os
 import sys
 import urllib.request
@@ -30,7 +32,7 @@ i=1
 DLerrorMet=False
 ULerrorMet=False
 
-print("issuu2pdf v0.3")
+print("issuu2pdf v0.4")
 print("Download %s from https://issuu.com" % outputName)
 sys.stdout.flush()
 
